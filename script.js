@@ -1,7 +1,10 @@
 const addBookButton = document.querySelector("[data-open-modal]");
-const addBookButton2 = document.querySelector("[data-open-modal2]");
-const modal = document.querySelector("[data-modal]")
-const closeModal = document.querySelector("[data-close-modal]")
+const modal = document.querySelector("[data-modal]");
+const closeModal = document.querySelector("[data-close-modal]");
+const removeBook = document.querySelector("[data-remove-book]");
+const toggleStatus = document.querySelector("[data-remove-book]");
+const readContainer = document.querySelector("[data-read-container]")
+const unreadContainer = document.querySelector("[data-unread-container]");
 
 function Book(title, author, pages, haveRead){
     this.title = title;
