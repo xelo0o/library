@@ -11,45 +11,108 @@ html {
 
 body {
   font-size: 1.6rem;
-  display: grid;
-  grid-template-columns: 1fr 5fr;
-  width: 100vw;
-  height:100vh;
+  width: 100%;
+  height:100%;
 }
-.sidebar{
-  grid-row: 1 / 3;
+.header{
+  position: fixed;
+  height:100px;
+  top:0;
+  width: 100%;
   padding: 30px 50px 30px 30px;
-  height:100vh;
-  background-color: #f8f8f8;
-  box-shadow: 3px 0 5px -2px rgba(0, 0, 0, 0.22);
+  background-color: #570000;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  gap:100px;
+  align-items: center;
+  gap:25px;
 }
 
-.sidebarHeader{
+.logoImg{
+  height:50px;
+  width: auto;
+}
+
+.headerHead{
   display: flex;
   gap:10px;
   align-items: center;
-  color: #585858;
-  font-size: 1.8rem;
+  color: #FFF;
+  font-size: 2.3rem;
 }
-.sidebarHeader img{
+.headerHead img{
   width:auto;
   height:80px;
 }
 
-.sidebar button{
-  padding: 10px;
-  font-size: 1.8rem;
+
+.header button{  
+  font-size: 2rem;
   border: none;
-  background-color: #f8f8f8;
-  color:rgb(0, 79, 143);
+  background-color: #57000098;
+  color:#fff;
   cursor: pointer;
-  text-align: left;
-  width:fit-content;
+  display: flex;
+  align-items: center;
+  gap:10px;
 }
 
+.container{
+  padding:30px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.contentContainer{
+  padding:30px;
+  margin: 150px 30px 30px 30px;
+}
+
+.bookContainer{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(125px, 350px));
+  grid-auto-rows: minmax(350px,1fr);
+  gap:30px;
+  padding:10px;
+}
+
+.bookSectionTitle{
+  color: #fff;
+  margin: 20px 0;
+  background-color: #313131;
+  padding:10px;
+}
+
+.article{
+  background-color: #fff;
+  border-radius: 10px;
+  display:flex;
+  flex-direction: column;
+  padding:20px;
+  justify-content: space-between;
+  box-shadow: 0px 5px 10px #b3b3b3;
+}
+
+.bookInfo{
+  color:#313131;
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+}
+
+.article-buttons{
+  display: flex;
+  gap:10px;
+  justify-content: flex-end;
+}
+.article-buttons button{
+  padding: 3px 5px;
+}
+
+
+
+/*MODAL STYLES*/
 dialog{
   box-shadow: 3px 0 5px -2px rgba(0, 0, 0, 0.22);
   border: 1px solid #f1f1f1;
@@ -102,37 +165,11 @@ input:focus{
   box-shadow: 0 2px 8px -2px gray;
 }
 
+
 .closeModal{
-  padding:3px 7px;
+  padding:7px;
   cursor: pointer;
 }
-
-.container{
-  padding:30px;
-  display: flex;
-  flex-direction: column;
-}
-
-
-.headerContainer{
-  display: flex;
-  justify-content: end;
-  padding-right: 50px;
-}
-
-.largeAddButton{
-  font-size: 7rem;
-  background-color: #fff;
-  border: none;
-  cursor: pointer;
-  color:#3b6ebb;
-}
-
-
-
-
-
-
 
 
 

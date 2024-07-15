@@ -14,9 +14,6 @@ addBookButton.addEventListener('click', ()=>{
     modal.showModal();
 })
 
-addBookButton2.addEventListener('click', ()=>{
-    modal.showModal();
-})
 
 closeModal.addEventListener('click', ()=>{
     modal.close();
