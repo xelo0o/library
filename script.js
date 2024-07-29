@@ -16,11 +16,12 @@ closeModal.addEventListener('click', ()=>{
     modal.close();
 })
 
-function Book(title, author, pages, haveRead){
+function Book(title, author, pages, haveRead, favorite){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.haveRead = haveRead;
+    this.favorite = favorite;
 }
 
 
@@ -63,7 +64,11 @@ function addReadBook(){
 
     const favoriteButtonSpan = document.createElement('span');
     favoriteButtonSpan.className = "iconify";
-    favoriteButtonSpan.setAttribute('data-icon','mdi-heart-outline');
+    favoriteButtonSpan.setAttribute('data-icon','mdi-heart');
+
+    const notFavoriteButtonSpan = document.createElement('span');
+    notFavoriteButtonSpan.className = "iconify";
+    notFavoriteButtonSpan.setAttribute('data-icon','mdi-heart-outline');
     
 
     const articleButtons = document.createElement('div');
@@ -91,7 +96,7 @@ function addReadBook(){
     articleButtons.appendChild(removeButton);
     articleButtons.appendChild(toggleStatus);
 
-
+// create if statements for if a book is favorited or not;
 
 
 }
@@ -104,6 +109,7 @@ function toggleRead(){
 }
 
 
+// book.favorite === 'yes' ?  favoriteButton.appendChild(favoriteButtonSpan) : favoriteButton.appendChild(notFavoriteButtonSpan)
 
 
 // if have read  = no, have toggle button
