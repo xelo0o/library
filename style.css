@@ -59,24 +59,14 @@ body {
   gap:10px;
 }
 
+
 .container{
-  padding:30px;
-  display: flex;
-  flex-direction: column;
-}
-
-
-.contentContainer{
-  padding:30px;
-  margin: 150px 5% 30px 5%;
-}
-
-.bookContainer{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 450px));
   grid-auto-rows: minmax(350px,1fr);
   gap:30px;
-  padding:10px;
+  padding:30px;
+  margin: 180px 5% 30px 5%;
 }
 
 .bookSectionTitle{

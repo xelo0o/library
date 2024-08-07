@@ -25,13 +25,8 @@
 
 
         
-        <div class="contentContainer">
+        <div class="container" data-book-container>
 
-            <h1 class="bookSectionTitle">Read Books</h1>
-
-            <div data-read-container class="bookContainer">
-
-                
                 <div class="article">
                     <div class="bookInfo">
                         <h1 id="book-title" class="article-title">Gardens of the Moon</h1>
@@ -48,37 +43,6 @@
                     </div>
                 </div>
 
-                
-
-                
-            </div>
-<!--                  UNREAD BOOK SECTION                             -->
-            <h1 class="bookSectionTitle">Unread Books</h1>
-
-            <div data-unread-book-container class="bookContainer">
-                
-                <div class="article">
-                    <div class="bookInfo">
-                        <h1 class="article-title">Gardens of the Moon</h1>
-                        <p class="authorName">Steven Erikson</p>
-                        <p class="numberOfPages">712</p>
-                        <p class="bookStatus">Yes</p>
-                    </div>
-                    <div class="article-buttons-container">
-                        <button class="favorite-button"><span class="iconify" data-icon="mdi-heart-outline"></span></button>
-                        <div class = "article-buttons">
-                            <button>Remove Book</button>
-                            <button>Toggle Status</button>
-                        </div>
-                    </div>
-                </div>
-
-                
-
-                
-            
-
-            
 
         </div>
     </div>
@@ -156,7 +120,7 @@
                 <h2>Add New Book</h2>
                 <button data-close-modal class="closeModal"><span class="iconify" data-icon="mdi-close"></span></button>
             </div>
-            <form action="#" class="bookForm">
+            <form method="dialog" class="bookForm">
                 <div>
                     <label for="title">Title</label>
                     <br>

@@ -3,8 +3,7 @@ const modal = document.querySelector("[data-modal]");
 const closeModal = document.querySelector("[data-close-modal]");
 const removeBook = document.querySelector("[data-remove-book]");
 const toggleStatus = document.querySelector("[data-remove-book]");
-const readContainer = document.querySelector("[data-read-container]")
-const unreadContainer = document.querySelector("[data-unread-container]");
+const bookContainer = document.querySelector("[data-book-container]")
 
 
 // Modal buttons
@@ -22,6 +21,9 @@ function Book(title, author, pages, haveRead, favorite){
     this.pages = pages;
     this.haveRead = haveRead;
     this.favorite = favorite;
+    this.info = function(){
+        this.favorite === true ?  favoriteButton.appendChild(favoriteButtonSpan) : favoriteButton.appendChild(notFavoriteButtonSpan);
+    };
 }
 
 
@@ -38,22 +40,22 @@ function addReadBook(){
     
     const h1 = document.createElement("h1");
     h1.className = "article-title";
-    h1.textContent = "byah";
+    h1.textContent = this.title;
     
 
     const author = document.createElement("p");
     author.setAttribute("id", "authorName");
-    author.textContent = "Byah Byah";
+    author.textContent = `Author: ${this.author}`;
     
 
     const pages = document.createElement("p");
     pages.setAttribute('id', 'numberOfPages');
-    pages.textContent = '343';
+    pages.textContent = `Pages: ${this.pages}`;
     
 
     const bookStatus = document.createElement("p");
     bookStatus.setAttribute('id', 'bookStatus');
-    bookStatus.textContent =  "Yes";
+    bookStatus.textContent =  `Book Read: ${this.haveRead}`;
 
     const articleButtonsContainer = document.createElement("div");
     articleButtonsContainer.className = "article-buttons"
@@ -83,7 +85,7 @@ function addReadBook(){
     
     
 
-    readContainer.appendChild(book);
+    bookContainer.appendChild(book);
     book.appendChild(bookInfo);
     bookInfo.appendChild(h1);
     bookInfo.appendChild(author);
@@ -93,8 +95,9 @@ function addReadBook(){
     articleButtonsContainer.appendChild(favoriteButton);
     favoriteButton.appendChild(favoriteButtonSpan);
     articleButtonsContainer.appendChild(articleButtons);
-    articleButtons.appendChild(removeButton);
     articleButtons.appendChild(toggleStatus);
+    articleButtons.appendChild(removeButton);
+    
 
 // create if statements for if a book is favorited or not;
 
@@ -109,7 +112,7 @@ function toggleRead(){
 }
 
 
-// book.favorite === 'yes' ?  favoriteButton.appendChild(favoriteButtonSpan) : favoriteButton.appendChild(notFavoriteButtonSpan)
+// 
 
 
 // if have read  = no, have toggle button
