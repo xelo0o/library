@@ -35,7 +35,7 @@
                         <p id="bookStatus">Book Read: Yes</p>
                     </div>
                     <div class="article-buttons">
-                        <button class="favorite-button"><span class="iconify" data-icon="mdi-heart-outline"></span></button>
+                        <button class="favorite-button"><span class="iconify" data-icon="mdi-heart"></span></button>
                         <div>
                             <button>Remove Book</button>
                             <button>Toggle Status</button>
@@ -120,7 +120,7 @@
                 <h2>Add New Book</h2>
                 <button data-close-modal class="closeModal"><span class="iconify" data-icon="mdi-close"></span></button>
             </div>
-            <form method="dialog" class="bookForm">
+            <form method="dialog" class="bookForm" id="new-book-form">
                 <div>
                     <label for="title">Title</label>
                     <br>
@@ -132,25 +132,29 @@
                     <br>
                     <input type="text" id="author" name="author" required>
                 </div>
+
                 <div>
                     <label for="pages">Pages</label>
                     <br>
                     <input type="number" id="pages" name="pages" required>
                 </div>
+
                 <fieldset>
                     <legend>Book Complete</legend>
-                    <input type="radio" id="yes" name="yes_no" value="yes" required>
+                    <input type="radio" id="complete-yes" name="yes_no" value="yes" required>
                     <label for="yes">Yes</label><br>
-                    <input type="radio" id="no" name="yes_no" value="no">
+                    <input type="radio" id="complete-no" name="yes_no" value="no">
                     <label for="no">No</label><br>
                 </fieldset>
+
                 <fieldset>
                     <legend>Favorite</legend>
                     <input type="checkbox" id="favorite" name="favorite" value="yes">
                     <label for="favorite">Yes</label><br>
-
                 </fieldset>
+
                 <input type="submit" value="Submit">
+
             </form>
             
         </div>
