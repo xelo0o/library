@@ -93,6 +93,14 @@ body {
   gap:20px;
 }
 
+.bookInfo h1 {
+  font-size: 2.5em;
+}
+
+.bookInfo p {
+  font-size: 1.3em;
+}
+
 .article-buttons{
   display: flex;
   gap:10px;

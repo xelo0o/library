@@ -8,7 +8,6 @@ const newBookForm = document.querySelector("#new-book-form");
 
 const myLibrary = [];
 
-
 // Modal buttons
 addBookButton.addEventListener('click', ()=>{
     modal.showModal();
@@ -20,6 +19,7 @@ closeModal.addEventListener('click', ()=>{
 //submit button
 newBookForm.addEventListener("submit", e =>{
     e.preventDefault();
+    bookContainer.textContent = '';
     addBookToLibrary();
     newBookForm.reset();
     modal.close();  
@@ -79,14 +79,14 @@ function displayLibrary(){
         const favoriteButtonSpan = document.createElement('span');
         favoriteButtonSpan.className = "iconify";
         favoriteButtonSpan.setAttribute('data-icon','mdi-heart');
-
+        
         const notFavoriteButtonSpan = document.createElement('span');
         notFavoriteButtonSpan.className = "iconify";
         notFavoriteButtonSpan.setAttribute('data-icon','mdi-heart-outline'); 
         
         const favoriteButton = document.createElement('button');
         favoriteButton.className = 'favorite-button';
-        //books.favorite === true ?  favoriteButton.appendChild(favoriteButtonSpan) : favoriteButton.appendChild(notFavoriteButtonSpan);   
+        //   
 
         const articleButtons = document.createElement('div');    
         
@@ -104,7 +104,7 @@ function displayLibrary(){
         bookInfo.appendChild(bookStatus);
         book.appendChild(articleButtonsContainer);
         articleButtonsContainer.appendChild(favoriteButton);
-        favoriteButton.appendChild(favoriteButtonSpan);
+        element.favorite === true ?  favoriteButton.appendChild(favoriteButtonSpan) : favoriteButton.appendChild(notFavoriteButtonSpan);
         articleButtonsContainer.appendChild(articleButtons);
         articleButtons.appendChild(toggleStatus);
         articleButtons.appendChild(removeButton);
