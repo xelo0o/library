@@ -18,16 +18,14 @@ closeModal.addEventListener('click', ()=>{
 })
 
 //submit button
-newBookForm.addEventListener("submit", function(){
-    event.preventDefault();
+newBookForm.addEventListener("submit", e =>{
+    e.preventDefault();
     addBookToLibrary();
     newBookForm.reset();
-    modal.close();
-    
+    modal.close();  
+    console.log(myLibrary);  
+    displayLibrary();
 })
-
-//reset modal values
-
 
 //Book Constructor 
 function Book(title, author, pages, haveRead, favorite){
@@ -38,87 +36,130 @@ function Book(title, author, pages, haveRead, favorite){
     this.favorite = favorite;
 }
 
-//Loop through array to display books in library
 
 function addBookToLibrary(){
-    let title = document.querySelector("#title").value;
-    let author = document.querySelector("#author").value;
-    let pages = document.querySelector("#pages").value;
-    let haveRead = document.querySelector("#complete-yes").checked;
-    let haveNotRead = document.querySelector("#complete-no").checked;
-    let favorite = document.querySelector("#favorite").checked;
-    let newBook = new Book(title, author, pages, haveRead, favorite);
-    myLibrary.push(newBook);
-    console.log(myLibrary);
+    const title = document.querySelector("#title");
+    const author = document.querySelector("#author");
+    const pages = document.querySelector("#pages");
+    const haveRead = document.querySelector("#complete-yes");
+    const favorite = document.querySelector("#favorite");
+    const book = new Book(title.value, author.value, pages.value, haveRead.checked, favorite.checked);
+    myLibrary.push(book);
+}
+
+function displayLibrary(){
+    myLibrary.forEach((element) =>{
+        // create a card for each book.
+        const book = document.createElement("div");
+        book.className = "article";        
+
+        const bookInfo = document.createElement("div");
+        bookInfo.className = "bookInfo";        
+        
+        const h1 = document.createElement("h1");
+        h1.className = "article-title";
+        h1.textContent = `${element.title}`;    
+
+        const author = document.createElement("p");
+        author.setAttribute("id", "authorName");
+        author.textContent = `Author: ${element.author}`;    
+
+        const pages = document.createElement("p");
+        pages.setAttribute('id', 'numberOfPages');
+        pages.textContent = `Pages: ${element.pages}`;    
+
+        const bookStatus = document.createElement("p");
+        bookStatus.setAttribute('id', 'bookStatus');
+        const haveReadBook = element.haveRead === true ? "Yes" : "No"
+        bookStatus.textContent =  `Book Read: ${haveReadBook}`;
+
+        const articleButtonsContainer = document.createElement("div");
+        articleButtonsContainer.className = "article-buttons"
+
+        const favoriteButtonSpan = document.createElement('span');
+        favoriteButtonSpan.className = "iconify";
+        favoriteButtonSpan.setAttribute('data-icon','mdi-heart');
+
+        const notFavoriteButtonSpan = document.createElement('span');
+        notFavoriteButtonSpan.className = "iconify";
+        notFavoriteButtonSpan.setAttribute('data-icon','mdi-heart-outline'); 
+        
+        const favoriteButton = document.createElement('button');
+        favoriteButton.className = 'favorite-button';
+        //books.favorite === true ?  favoriteButton.appendChild(favoriteButtonSpan) : favoriteButton.appendChild(notFavoriteButtonSpan);   
+
+        const articleButtons = document.createElement('div');    
+        
+        const removeButton = document.createElement('button');
+        removeButton.textContent = "Remove Book";    
+
+        const toggleStatus = document.createElement('button');
+        toggleStatus.textContent = "Toggle Status";
+
+        bookContainer.appendChild(book);
+        book.appendChild(bookInfo);
+        bookInfo.appendChild(h1);
+        bookInfo.appendChild(author);
+        bookInfo.appendChild(pages);
+        bookInfo.appendChild(bookStatus);
+        book.appendChild(articleButtonsContainer);
+        articleButtonsContainer.appendChild(favoriteButton);
+        favoriteButton.appendChild(favoriteButtonSpan);
+        articleButtonsContainer.appendChild(articleButtons);
+        articleButtons.appendChild(toggleStatus);
+        articleButtons.appendChild(removeButton);
+    })
 }
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 // Create card for added books
 function displayLibrary(){
-    
-    const book = document.createElement("div");
-    book.className = "article";        
-
-    const bookInfo = document.createElement("div");
-    bookInfo.className = "bookInfo";        
-    
-    const h1 = document.createElement("h1");
-    h1.className = "article-title";
-    h1.textContent = this.title;    
-
-    const author = document.createElement("p");
-    author.setAttribute("id", "authorName");
-    author.textContent = `Author: ${this.author}`;    
-
-    const pages = document.createElement("p");
-    pages.setAttribute('id', 'numberOfPages');
-    pages.textContent = `Pages: ${this.pages}`;    
-
-    const bookStatus = document.createElement("p");
-    bookStatus.setAttribute('id', 'bookStatus');
-    bookStatus.textContent =  `Book Read: ${this.haveRead}`;
-
-    const articleButtonsContainer = document.createElement("div");
-    articleButtonsContainer.className = "article-buttons"
-
-    const favoriteButton = document.createElement('button');
-    favoriteButton.className = 'favorite-button';
-    
-
-    const favoriteButtonSpan = document.createElement('span');
-    favoriteButtonSpan.className = "iconify";
-    favoriteButtonSpan.setAttribute('data-icon','mdi-heart');
-
-    const notFavoriteButtonSpan = document.createElement('span');
-    notFavoriteButtonSpan.className = "iconify";
-    notFavoriteButtonSpan.setAttribute('data-icon','mdi-heart-outline');    
-
-    const articleButtons = document.createElement('div');    
-    
-    const removeButton = document.createElement('button');
-    removeButton.textContent = "Remove Book";    
-
-    const toggleStatus = document.createElement('button');
-    toggleStatus.textContent = "Toggle Status";
-
-    bookContainer.appendChild(book);
-    book.appendChild(bookInfo);
-    bookInfo.appendChild(h1);
-    bookInfo.appendChild(author);
-    bookInfo.appendChild(pages);
-    bookInfo.appendChild(bookStatus);
-    book.appendChild(articleButtonsContainer);
-    articleButtonsContainer.appendChild(favoriteButton);
-    favoriteButton.appendChild(favoriteButtonSpan);
-    articleButtonsContainer.appendChild(articleButtons);
-    articleButtons.appendChild(toggleStatus);
-    articleButtons.appendChild(removeButton);
-
+        
 }
 
 displayLibrary();
+
 
 
 function toggleRead(){
@@ -132,4 +173,6 @@ function toggleRead(){
 // if have read  = no, have toggle button
 //if have read = yes, don't include toggle button
 
-//this.favorite === true ?  favoriteButton.appendChild(favoriteButtonSpan) : favoriteButton.appendChild(notFavoriteButtonSpan);
+//
+
+*/
