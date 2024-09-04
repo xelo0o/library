@@ -2,7 +2,7 @@ const addBookButton = document.querySelector("[data-open-modal]");
 const modal = document.querySelector("[data-modal]");
 const closeModal = document.querySelector("[data-close-modal]");
 const removeBook = document.querySelector("[data-remove-book]");
-const toggleStatus = document.querySelector("[data-remove-book]");
+const toggleStatus = document.querySelector("[data-toggle-status]");
 const bookContainer = document.querySelector("[data-book-container]")
 const newBookForm = document.querySelector("#new-book-form");
 
@@ -26,6 +26,16 @@ newBookForm.addEventListener("submit", e =>{
     console.log(myLibrary);  
     displayLibrary();
 })
+
+
+
+Book.prototype.toggleStatus = function(){
+    toggleStatus.addEventListener('click', ()=>{
+        if (this.haveRead === true) this.haveRead = false;
+        console.log(this.haveRead);
+    })
+}
+
 
 //Book Constructor 
 function Book(title, author, pages, haveRead, favorite){
@@ -62,16 +72,16 @@ function displayLibrary(){
 
         const author = document.createElement("p");
         author.setAttribute("id", "authorName");
-        author.textContent = `Author: ${element.author}`;    
+        author.textContent = element.author;    
 
         const pages = document.createElement("p");
         pages.setAttribute('id', 'numberOfPages');
-        pages.textContent = `Pages: ${element.pages}`;    
+        pages.textContent = `${element.pages} pages`;    
 
         const bookStatus = document.createElement("p");
         bookStatus.setAttribute('id', 'bookStatus');
-        const haveReadBook = element.haveRead === true ? "Yes" : "No"
-        bookStatus.textContent =  `Book Read: ${haveReadBook}`;
+        const haveReadBook = element.haveRead === true ? "Completed" : "Not Complete"
+        bookStatus.textContent =  haveReadBook;
 
         const articleButtonsContainer = document.createElement("div");
         articleButtonsContainer.className = "article-buttons"
@@ -91,9 +101,11 @@ function displayLibrary(){
         const articleButtons = document.createElement('div');    
         
         const removeButton = document.createElement('button');
+        removeButton.setAttribute('data', 'remove-book');
         removeButton.textContent = "Remove Book";    
 
         const toggleStatus = document.createElement('button');
+        toggleStatus.setAttribute('data', 'toggle-status');
         toggleStatus.textContent = "Toggle Status";
 
         bookContainer.appendChild(book);
@@ -111,6 +123,10 @@ function displayLibrary(){
     })
 }
 
+
+
+//const gardensOfTheMoon = new Book("Gardens of the Moon", "Steven Erikson", 712, "yes", true)
+//Book.addBookToLibrary(gardensOfTheMoon);
 
 
 
