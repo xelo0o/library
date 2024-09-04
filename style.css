@@ -22,7 +22,7 @@ body {
   width: 100vw;
   padding: 30px 0px;
   background-color: #570000;
-  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,15 +59,13 @@ body {
   gap:10px;
 }
 
-
 .container{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-template-rows: max-content;
-  gap:2rem;
-  margin: 225px auto 30px auto;
+  grid-template-columns: repeat(auto-fit, minmax(275px, 350px));
+  grid-auto-rows: minmax(350px,1fr);
+  margin: 200px auto 30px auto;
   max-width: 90%;
-  place-self: center;
+  gap:3rem;
 }
 
 .bookSectionTitle{
@@ -75,6 +73,7 @@ body {
   margin: 20px 0;
   background-color: #313131;
   padding:10px;
+  
 }
 
 .article{
@@ -96,6 +95,7 @@ body {
 
 .bookInfo h1 {
   font-size: 2.2em;
+  overflow-wrap:break-word;
 }
 
 #authorName{
