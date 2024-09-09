@@ -6,7 +6,12 @@ const toggleStatus = document.querySelector("[data-toggle-status]");
 const bookContainer = document.querySelector("[data-book-container]")
 const newBookForm = document.querySelector("#new-book-form");
 
-const myLibrary = [];
+const myLibrary = [
+    {title: 'Gardens of the Moon', author: 'Steven Erikson', pages: '712', haveRead: true, favorite: true},
+    {title: 'Deadhouse Gates', author: 'Steven Erikson', pages: '943', haveRead: true, favorite: true},
+    {title: 'Memories of Ice', author: 'Steven Erikson', pages: '1187', haveRead: true, favorite: true},
+];
+displayLibrary();
 
 // Modal buttons
 addBookButton.addEventListener('click', ()=>{
@@ -29,14 +34,6 @@ newBookForm.addEventListener("submit", e =>{
 
 
 
-Book.prototype.toggleStatus = function(){
-    toggleStatus.addEventListener('click', ()=>{
-        if (this.haveRead === true) this.haveRead = false;
-        console.log(this.haveRead);
-    })
-}
-
-
 //Book Constructor 
 function Book(title, author, pages, haveRead, favorite){
     this.title = title;
@@ -44,6 +41,10 @@ function Book(title, author, pages, haveRead, favorite){
     this.pages = pages;
     this.haveRead = haveRead;
     this.favorite = favorite;
+}
+
+Book.prototype.changeReadStatus = function(){
+    return this.haveRead ? "Read" : "Not Read";
 }
 
 
@@ -57,11 +58,27 @@ function addBookToLibrary(){
     myLibrary.push(book);
 }
 
+
+
+
+
+
+
+// change toggle status and remove book to ICONS for better responsive sizing
+
+
+
+
+
+
+
+
 function displayLibrary(){
-    myLibrary.forEach((element) =>{
+    myLibrary.forEach((element, index) =>{
         // create a card for each book.
         const book = document.createElement("div");
-        book.className = "article";        
+        book.className = "article";
+        book.setAttribute('data-index', index)        
 
         const bookInfo = document.createElement("div");
         bookInfo.className = "bookInfo";        
@@ -72,16 +89,16 @@ function displayLibrary(){
 
         const author = document.createElement("p");
         author.setAttribute("id", "authorName");
-        author.textContent = element.author;    
+        author.textContent = `Author: ${element.author}`;    
 
         const pages = document.createElement("p");
         pages.setAttribute('id', 'numberOfPages');
-        pages.textContent = `${element.pages} pages`;    
+        pages.textContent = `Pages: ${element.pages}`;    
 
         const bookStatus = document.createElement("p");
         bookStatus.setAttribute('id', 'bookStatus');
-        const haveReadBook = element.haveRead === true ? "Completed" : "Not Complete"
-        bookStatus.textContent =  haveReadBook;
+        const haveReadBook = element.haveRead === true ? "Read" : "Not Read"
+        bookStatus.textContent =  `Status: ${haveReadBook}`;;
 
         const articleButtonsContainer = document.createElement("div");
         articleButtonsContainer.className = "article-buttons"
@@ -120,6 +137,8 @@ function displayLibrary(){
         articleButtonsContainer.appendChild(articleButtons);
         articleButtons.appendChild(toggleStatus);
         articleButtons.appendChild(removeButton);
+        console.log(index);
+
     })
 }
 
