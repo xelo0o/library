@@ -104,26 +104,29 @@ function displayLibrary(){
         articleButtonsContainer.className = "article-buttons"
 
         const favoriteButtonSpan = document.createElement('span');
-        favoriteButtonSpan.className = "iconify";
-        favoriteButtonSpan.setAttribute('data-icon','mdi-heart');
-        
-        const notFavoriteButtonSpan = document.createElement('span');
-        notFavoriteButtonSpan.className = "iconify";
-        notFavoriteButtonSpan.setAttribute('data-icon','mdi-heart-outline'); 
-        
-        const favoriteButton = document.createElement('button');
-        favoriteButton.className = 'favorite-button';
-        //   
+        favoriteButtonSpan.classList.add('iconify');
+        favoriteButtonSpan.setAttribute('data-icon','mdi-book-heart');
 
-        const articleButtons = document.createElement('div');    
+        const toggleButtonSpan = document.createElement('span');
+        toggleButtonSpan.classList.add('iconify');
+        toggleButtonSpan.setAttribute('data-icon','mdi-book-check');
+
+        const removeButtonSpan = document.createElement('span');
+        removeButtonSpan.className = "iconify";
+        removeButtonSpan.setAttribute('data-icon', 'mdi-book-minus');   
+    
+ 
+        const articleButtons = document.createElement('div');
+
+        const favoriteButton = document.createElement('button');
+        favoriteButton.classList.add('favorite-button');
         
-        const removeButton = document.createElement('button');
-        removeButton.setAttribute('data', 'remove-book');
-        removeButton.textContent = "Remove Book";    
+        const toggleButton = document.createElement('button');
+        const removeButton =document.createElement('button');
+        
 
         const toggleStatus = document.createElement('button');
-        toggleStatus.setAttribute('data', 'toggle-status');
-        toggleStatus.textContent = "Toggle Status";
+        toggleStatus.setAttribute('data-icon', 'mdi-toggle-switch');
 
         bookContainer.appendChild(book);
         book.appendChild(bookInfo);
@@ -133,10 +136,14 @@ function displayLibrary(){
         bookInfo.appendChild(bookStatus);
         book.appendChild(articleButtonsContainer);
         articleButtonsContainer.appendChild(favoriteButton);
-        element.favorite === true ?  favoriteButton.appendChild(favoriteButtonSpan) : favoriteButton.appendChild(notFavoriteButtonSpan);
-        articleButtonsContainer.appendChild(articleButtons);
-        articleButtons.appendChild(toggleStatus);
-        articleButtons.appendChild(removeButton);
+        articleButtonsContainer.appendChild(toggleButton);
+        articleButtonsContainer.appendChild(removeButton);
+        if(element.favorite === true) {favoriteButtonSpan.classList.add('color-red')};
+        if(element.haveRead === true) {toggleButtonSpan.classList.add('color-green')};
+        favoriteButton.appendChild(favoriteButtonSpan);
+        toggleButton.appendChild(toggleButtonSpan);
+        removeButton.appendChild(removeButtonSpan);
+        
         console.log(index);
 
     })
