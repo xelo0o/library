@@ -6,12 +6,8 @@ const toggleStatus = document.querySelector("[data-toggle-status]");
 const bookContainer = document.querySelector("[data-book-container]")
 const newBookForm = document.querySelector("#new-book-form");
 
-const myLibrary = [
-    {title: 'Gardens of the Moon', author: 'Steven Erikson', pages: '712', haveRead: true, favorite: true},
-    {title: 'Deadhouse Gates', author: 'Steven Erikson', pages: '943', haveRead: true, favorite: true},
-    {title: 'Memories of Ice', author: 'Steven Erikson', pages: '1187', haveRead: true, favorite: true},
-];
-displayLibrary();
+const myLibrary = [];
+
 
 // Modal buttons
 addBookButton.addEventListener('click', ()=>{
@@ -44,7 +40,16 @@ function Book(title, author, pages, haveRead, favorite){
 }
 
 Book.prototype.changeReadStatus = function(){
-    return this.haveRead ? "Read" : "Not Read";
+    this.haveRead = !this.haveRead;
+}
+
+Book.prototype.favoriteStatus = function(){
+    this.favorite = !this.favorite;
+}
+
+Book.prototype.removeFromLibrary = function(){
+    const index = myLibrary.indexOf(this);
+    myLibrary.splice(index,1);
 }
 
 
@@ -62,20 +67,14 @@ function addBookToLibrary(){
 
 
 
-
-
-// change toggle status and remove book to ICONS for better responsive sizing
-
-
-
-
-
-
-
-
 function displayLibrary(){
+
+    bookContainer.textContent = '';
+
     myLibrary.forEach((element, index) =>{
         // create a card for each book.
+        bookContainer.textContent = '';
+
         const book = document.createElement("div");
         book.className = "article";
         book.setAttribute('data-index', index)        
@@ -113,10 +112,9 @@ function displayLibrary(){
 
         const removeButtonSpan = document.createElement('span');
         removeButtonSpan.className = "iconify";
-        removeButtonSpan.setAttribute('data-icon', 'mdi-book-minus');   
-    
+        removeButtonSpan.setAttribute('data-icon', 'mdi-delete');       
  
-        const articleButtons = document.createElement('div');
+        //const articleButtons = document.createElement('div');
 
         const favoriteButton = document.createElement('button');
         favoriteButton.classList.add('favorite-button');
@@ -128,6 +126,22 @@ function displayLibrary(){
         const toggleStatus = document.createElement('button');
         toggleStatus.setAttribute('data-icon', 'mdi-toggle-switch');
 
+        toggleButton.addEventListener('click', ()=>{
+            element.changeReadStatus();
+            displayLibrary();
+        });
+
+        favoriteButton.addEventListener('click', ()=>{
+            element.favoriteStatus();
+            displayLibrary();
+        });
+
+        removeButton.addEventListener('click', ()=>{
+            element.removeFromLibrary();
+            displayLibrary();
+        })
+
+        
         bookContainer.appendChild(book);
         book.appendChild(bookInfo);
         bookInfo.appendChild(h1);
@@ -143,17 +157,30 @@ function displayLibrary(){
         favoriteButton.appendChild(favoriteButtonSpan);
         toggleButton.appendChild(toggleButtonSpan);
         removeButton.appendChild(removeButtonSpan);
-        
-        console.log(index);
-
     })
 }
 
+const book1 = new Book("Gardens of the Moon", "Steven Erikson", 712, true, true)
+const book2 = new Book("Deadhouse Gates", "Steven Erikson", 943, true, true);
+const book3 = new Book("Memories of Ice", "Steven Erikson", 1187, true, true);
+const book4 = new Book("House of Chains", "Steven Erikson", 1036, true, true);
+myLibrary.push(book1);
+myLibrary.push(book2);
+myLibrary.push(book3);
+myLibrary.push(book4);
+console.log(myLibrary);
 
+displayLibrary();
 
 //const gardensOfTheMoon = new Book("Gardens of the Moon", "Steven Erikson", 712, "yes", true)
 //Book.addBookToLibrary(gardensOfTheMoon);
 
+
+/*
+{title: 'Gardens of the Moon', author: 'Steven Erikson', pages: '712', haveRead: true, favorite: true},
+    {title: 'Deadhouse Gates', author: 'Steven Erikson', pages: '943', haveRead: true, favorite: true},
+    {title: 'Memories of Ice', author: 'Steven Erikson', pages: '1187', haveRead: true, favorite: true},
+*/
 
 
 
