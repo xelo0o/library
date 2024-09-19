@@ -12,6 +12,7 @@ addBookButton.addEventListener('click', ()=>{
     modal.showModal();
 })
 closeModal.addEventListener('click', ()=>{
+    newBookForm.reset();
     modal.close();
 })
 
