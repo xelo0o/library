@@ -5,9 +5,7 @@ const removeBook = document.querySelector("[data-remove-book]");
 const toggleStatus = document.querySelector("[data-toggle-status]");
 const bookContainer = document.querySelector("[data-book-container]")
 const newBookForm = document.querySelector("#new-book-form");
-
 const myLibrary = [];
-
 
 // Modal buttons
 addBookButton.addEventListener('click', ()=>{
@@ -24,11 +22,8 @@ newBookForm.addEventListener("submit", e =>{
     addBookToLibrary();
     newBookForm.reset();
     modal.close();  
-    console.log(myLibrary);  
     displayLibrary();
 })
-
-
 
 //Book Constructor 
 function Book(title, author, pages, haveRead, favorite){
@@ -52,7 +47,6 @@ Book.prototype.removeFromLibrary = function(){
     myLibrary.splice(index,1);
 }
 
-
 function addBookToLibrary(){
     const title = document.querySelector("#title");
     const author = document.querySelector("#author");
@@ -63,18 +57,12 @@ function addBookToLibrary(){
     myLibrary.push(book);
 }
 
-
-
-
-
 function displayLibrary(){
 
     bookContainer.textContent = '';
 
     myLibrary.forEach((element, index) =>{
         // create a card for each book.
-        bookContainer.textContent = '';
-
         const book = document.createElement("div");
         book.className = "article";
         book.setAttribute('data-index', index)        
@@ -109,18 +97,19 @@ function displayLibrary(){
         const toggleButtonSpan = document.createElement('span');
         toggleButtonSpan.classList.add('iconify');
         toggleButtonSpan.setAttribute('data-icon','mdi-book-check');
+        
 
         const removeButtonSpan = document.createElement('span');
         removeButtonSpan.className = "iconify";
         removeButtonSpan.setAttribute('data-icon', 'mdi-delete');       
  
-        //const articleButtons = document.createElement('div');
-
         const favoriteButton = document.createElement('button');
         favoriteButton.classList.add('favorite-button');
         
         const toggleButton = document.createElement('button');
+        //toggleButton.textContent = 'Toggle Status';
         const removeButton =document.createElement('button');
+        //removeButton.textContent = 'Remove';
         
 
         const toggleStatus = document.createElement('button');
@@ -171,77 +160,3 @@ myLibrary.push(book4);
 console.log(myLibrary);
 
 displayLibrary();
-
-//const gardensOfTheMoon = new Book("Gardens of the Moon", "Steven Erikson", 712, "yes", true)
-//Book.addBookToLibrary(gardensOfTheMoon);
-
-
-/*
-{title: 'Gardens of the Moon', author: 'Steven Erikson', pages: '712', haveRead: true, favorite: true},
-    {title: 'Deadhouse Gates', author: 'Steven Erikson', pages: '943', haveRead: true, favorite: true},
-    {title: 'Memories of Ice', author: 'Steven Erikson', pages: '1187', haveRead: true, favorite: true},
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-// Create card for added books
-function displayLibrary(){
-        
-}
-
-displayLibrary();
-
-
-
-function toggleRead(){
-    
-}
-
-
-// 
-
-
-// if have read  = no, have toggle button
-//if have read = yes, don't include toggle button
-
-//
-
-*/
